@@ -106,7 +106,7 @@ const people = [
        </div>
      </div>
 
-     <Debug :data="{data}"/>
+<!--     <Debug :data="{data}"/>-->
    </div>
  </div>
 </template>
