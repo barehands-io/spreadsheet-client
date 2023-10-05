@@ -20,6 +20,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@trapcode/browser-storage": "^2.4.2",
     "@vueuse/core": "^10.3.0",
+    "axios": "^1.5.1",
     "pinia": "^2.1.6",
     "sass": "^1.66.0",
     "vue-json-debug": "^1.1.28"
