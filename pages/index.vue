@@ -95,7 +95,10 @@ onMounted(() => {
             <label>Type rating:</label>
 
             <select class="border-2 rounded-md py-2">
-              <option v-for="(item, index) in type_rating" :key="index" :value="item.key"> {{ item.type_rating }}</option>
+              <option v-for="(item, index) in type_rating" :key="index" :value="item.key"> {{
+                  item.type_rating
+                }}
+              </option>
             </select>
           </div>
           <div class="flex flex-col">
