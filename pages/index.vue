@@ -70,11 +70,10 @@ watch(
 </script>
 
 <template>
-  {{ form }}
   <DataBusy v-if="isLoading" />
 
   <div v-else-if="data?.data?.data" class="container mx-auto">
-    <div class="px-4 sm:px-6 lg:px-8">
+    <div class="px-4 sm:px-6 lg:px-8 form">
       {{ data.data.meta }}
 
       <div>
@@ -106,10 +105,10 @@ watch(
             </select>
           </div>
           <div class="flex flex-col form">
-            <label> type_rating</label>
+            <label> Company Name</label>
             <input
               v-model="form.search"
-              type="search"
+              type="text"
               class="bg-gray-200 p-2 w-full"
             />
             <p>Search by Company Name</p>
@@ -127,6 +126,7 @@ watch(
             <table class="min-w-full border-separate border-spacing-0">
               <thead>
                 <tr>
+                  <th scope="col"></th>
                   <th
                     scope="col"
                     class="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
@@ -164,6 +164,7 @@ watch(
                   v-for="(person, personIdx) in data.data.data"
                   :key="person.email"
                 >
+                  <td>{{ personIdx + 1 }}.</td>
                   <td
                     :class="[
                       personIdx !== data.data.data.length - 1
