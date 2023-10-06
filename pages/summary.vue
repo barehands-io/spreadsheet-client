@@ -8,11 +8,6 @@
       <p>Loading...</p>
     </div>
 
-    <!-- Error message -->
-    <div v-if="error" class="bg-red-500 text-white p-4 rounded-md mb-6">
-      {{ error }}
-    </div>
-
     <!-- Display data when fetched -->
     <div v-else-if="data">
       <div class="grid grid-cols-4 gap-4 mb-6">
@@ -33,26 +28,20 @@
           <p>{{ data.summary.total_locations }}</p>
         </div>
 
-        <TablesRoutesSummary :data="data.summary.routes" />
+        <TablesRoutesSummary
+          :data="data.summary.routes"
+          :total="data.summary.total_routes"
+        />
 
-        <div class="bg-white col-span-2 p-6 rounded-md shadow-sm">
-          <p class="font-bold text-lg mb-4">All Routes:</p>
-          <ul>
-            <li
-              v-for="(item, index) in data.summary.routes"
-              :key="index"
-              class="mb-2"
-            >
-              <div class="flex items-center gap-x-10">
-                <div class="font-medium">{{ item.label }}:</div>
-                <div class="text-xl">
-                  {{ item.count }}
-                </div>
-              </div>
-            </li>
-          </ul>
+        <div class="col-span-2">
+          <TablesLocationRouteSummary />
         </div>
       </div>
+    </div>
+
+    <!-- Error message -->
+    <div v-else class="bg-red-500 text-white p-4 rounded-md mb-6">
+      {{ error }}
     </div>
   </div>
 

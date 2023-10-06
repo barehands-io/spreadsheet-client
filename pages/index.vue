@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {useStore} from "~/stores";
 import axios from "axios";
-import {routes_data, type_rating} from "~/stores/data";
+import { useStore } from "~/stores";
+import { routes_data, type_rating } from "~/stores/data";
 
 definePageMeta({
   layout: "main",
@@ -60,26 +60,7 @@ onMounted(() => {
     <div class="px-4 sm:px-6 lg:px-8">
       {{ data.data.meta }}
 
-      <div class="grid grid-cols-3 gap-8">
-        <div class="border p-10">
-          <h1 class="text-lg">Total Companies</h1>
-          <span class="font-semibold text-2xl">
-            {{ data.data.meta.total }}</span
-          >
-        </div>
-        <div class="border p-10">
-          <h1 class="text-lg">Total Companies</h1>
-          <span class="font-semibold text-2xl">
-            {{ data.data.meta.total }}</span
-          >
-        </div>
-        <div class="border p-10">
-          <h1 class="text-lg">Total Companies</h1>
-          <span class="font-semibold text-2xl">
-            {{ data.data.meta.total }}</span
-          >
-        </div>
-      </div>
+  
       <div>
         <div class="grid grid-cols-2 gap-8">
 
