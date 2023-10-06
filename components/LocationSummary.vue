@@ -1,44 +1,32 @@
 <template>
-  <div class="bg-gray-100">
-    <h1 class="text-3xl font-bold mb-6">Summary</h1>
+  <!-- Loader when data is being fetched -->
+  <div v-if="isLoading" class="text-center py-5">
+    <div class="loader"></div>
+    <p>Loading...</p>
+  </div>
 
-    <!-- Loader when data is being fetched -->
-    <div v-if="isLoading" class="text-center py-5">
-      <div class="loader"></div>
-      <p>Loading...</p>
-    </div>
-
-    <!-- Display data when fetched -->
-    <div v-else-if="data">
-      <div class="bg-white p-4 rounded-md shadow-sm">
-        <h2 class="text-xl font-bold mb-4">Organizations Location Summary</h2>
-        <ul>
-          <li
-            v-for="location in data.data.data"
-            :key="location._id"
-            class="mb-2"
-          >
-            <span class="font-bold">{{ location._id }}:</span>
-            <span>{{ location.numberOfOrganizations }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Error message -->
-    <div v-else class="bg-red-500 text-white p-4 rounded-md mb-6">
-      {{ error }}
+  <!-- Display data when fetched -->
+  <div v-else-if="data?.data">
+    <div class="bg-white p-4 rounded-md shadow-sm">
+      <h2 class="text-xl font-bold mb-4">Organizations Location Summary</h2>
+      <ul>
+        <li v-for="location in data.data.data" :key="location._id" class="mb-2">
+          <span class="font-bold">{{ location._id }}:</span>
+          <span>{{ location.numberOfOrganizations }}</span>
+        </li>
+      </ul>
     </div>
   </div>
+
+  <!-- Error message -->
+  <div v-else class="bg-red-500 text-white p-4 rounded-md mb-6">
+    {{ error }}
+  </div>
+  <!--  <Debug :data="{ data }" />-->
 </template>
 
 <script setup lang="ts">
 import axios from "axios";
-
-definePageMeta({
-  layout: "main",
-  name: "summary",
-});
 
 const data = ref<any>();
 
@@ -52,7 +40,6 @@ function getData() {
   axios
     .get("http://localhost:3800/location")
     .then((res) => {
-      console.log(res);
       data.value = res.data;
       isLoading.value = false;
     })

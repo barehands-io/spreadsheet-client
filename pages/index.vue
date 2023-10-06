@@ -33,7 +33,6 @@ function getData() {
   axios.get("http://localhost:3800/all")
       .then((res) => {
 
-        console.log(res);
         data.value = res.data;
         isLoading.value = false;
       })

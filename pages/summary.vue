@@ -15,7 +15,7 @@
 
     <!-- Display data when fetched -->
     <div v-else-if="data">
-      <div class="grid grid-cols-2 gap-4 mb-6">
+      <div class="grid grid-cols-4 gap-4 mb-6">
         <div class="bg-white p-4 rounded-md shadow-sm">
           <p class="font-bold">Total Companies:</p>
           <p>{{ data.summary.total_companies }}</p>
@@ -32,16 +32,36 @@
           <p class="font-bold">Total Locations:</p>
           <p>{{ data.summary.total_locations }}</p>
         </div>
+
+        <TablesRoutesSummary :data="data.summary.routes" />
+
+        <div class="bg-white col-span-2 p-6 rounded-md shadow-sm">
+          <p class="font-bold text-lg mb-4">All Routes:</p>
+          <ul>
+            <li
+              v-for="(item, index) in data.summary.routes"
+              :key="index"
+              class="mb-2"
+            >
+              <div class="flex items-center gap-x-10">
+                <div class="font-medium">{{ item.label }}:</div>
+                <div class="text-xl">
+                  {{ item.count }}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 
   <LocationSummary />
+  <!--  <Debug :data="data" />-->
 </template>
 
 <script setup lang="ts">
 import axios from "axios";
-import LocationSummary from "~/components/LocationSummary.vue";
 
 definePageMeta({
   layout: "main",
@@ -60,7 +80,6 @@ function getData() {
   axios
     .get("http://localhost:3800/summary")
     .then((res) => {
-      console.log(res);
       data.value = res.data;
       isLoading.value = false;
     })
